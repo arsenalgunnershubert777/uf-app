@@ -6,7 +6,7 @@ class ViewBuilding extends React.Component {
         try {
             return directory.coordinates.latitude
         }catch (e) {
-            return 'latitude N/A'
+            return 'N/A'
         }
         
         
@@ -16,7 +16,7 @@ class ViewBuilding extends React.Component {
         try {
             return directory.coordinates.longitude
         } catch (e) {
-            return 'longitude N/A'
+            return 'N/A'
         }
 
 
@@ -27,7 +27,7 @@ class ViewBuilding extends React.Component {
         try {
             return directory.address
         } catch (e) {
-            return 'address N/A'
+            return 'N/A'
         }
 
 
@@ -56,9 +56,9 @@ class ViewBuilding extends React.Component {
                             <td> {directory.name} </td>
                         </p>
                     </tr>
-                    <p> {this.displayBuildingLatitude(directory)} </p>
-                    <p> {this.displayBuildingLongitude(directory)} </p>
-                    <p> {this.displayBuildingAddress(directory)} </p>
+                    <p> {"Latitude: "} {this.displayBuildingLatitude(directory)} </p>
+                    <p> {"Longitude: "} {this.displayBuildingLongitude(directory)} </p>
+                    <p> {"Address: "} {this.displayBuildingAddress(directory)} </p>
                 </div>
                 /*
                 <div>

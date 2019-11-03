@@ -3,13 +3,16 @@ import Search from './components/Search';
 import ViewBuilding from './components/ViewBuilding';
 import BuildingList from './components/BuildingList';
 import Credit from './components/Credit';
+import AddBuilding from './components/AddBuilding';
+import RemoveBuilding from './components/RemoveBuilding';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       filterText: '',
-      selectedBuilding: 0
+      selectedBuilding: 0,
+      data : this.props.data
     };
   }
 
@@ -28,6 +31,12 @@ class App extends React.Component {
       })
   }
 
+  updateData(newData) {
+      this.setState({
+          data : newData
+      })
+  }
+
   render() {
     
     return (
@@ -37,7 +46,7 @@ class App extends React.Component {
         </div>
 
         <Search
-            filterText={this.state.filterText}
+            //filterText={this.state.filterText}
             filterUpdate={this.filterUpdate.bind(this)}
             
             
@@ -53,7 +62,7 @@ class App extends React.Component {
                     </td>
                   </tr>
                   <BuildingList
-                    data={this.props.data}
+                    data={this.state.data}
                     filterText = {this.state.filterText}
                     //selectedBuilding={this.state.selectedBuilding}
                     selectedUpdate={this.selectedUpdate.bind(this)}
@@ -63,13 +72,21 @@ class App extends React.Component {
             </div>
             <div className="column2">
               <ViewBuilding 
-                data={this.props.data}
+                data={this.state.data}
                 selectedBuilding ={this.state.selectedBuilding}
               />
             </div>
           </div>
           <Credit />
         </main>
+        <AddBuilding
+          data={this.state.data}
+          updateData={this.updateData.bind(this)}
+        />
+        <RemoveBuilding
+            data={this.state.data}
+            updateData={this.updateData.bind(this)}
+        />
       </div>
     );
   }
