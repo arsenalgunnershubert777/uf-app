@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { IoIosAddCircleOutline} from 'react-icons/io';
 class AddBuilding extends React.Component {
     
 
@@ -29,52 +29,68 @@ class AddBuilding extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A building was submitted: ' + this.state.name);
+        
         event.preventDefault();
-        this.data.push({
-            id: this.state.idNum,
-            code: this.state.code,
-            name: this.state.name,
-            coordinates: {
-                latitude: this.state.lat,
-                longitude: this.state.long
-            },
-            address: this.state.addr
-        })
+        if (this.state.code !== '' && this.data.filter(directory => {
+            return directory.code.toLowerCase() === (this.state.code.toLowerCase().trim())
+        }).length === 0) {
 
-        this.setState({
-            idNum : this.state.idNum + 1
-        })
+            this.data.push({
+                id: this.state.idNum,
+                code: this.state.code.toUpperCase().trim(),
+                name: this.state.name,
+                coordinates: {
+                    latitude: this.state.lat,
+                    longitude: this.state.long
+                },
+                address: this.state.addr
+            })
 
-        console.log(this.data)
-        this.props.updateData(this.data)
+            this.setState({
+                idNum: this.state.idNum + 1
+            })
+
+            console.log(this.data)
+            this.props.updateData(this.data)
+            alert('A building was added: ' + this.state.code);
+        }
+        else {
+            alert('Code ' + this.state.code + ' already used, input new code');
+        }
     }
 
     render() {
         this.data = this.props.data;
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form
+                className = "addBuilding"
+                onSubmit={this.handleSubmit}>
+                <p> Add a building!</p>
                 <label>
                     Code:
-                <input type="text" name = "code" value={this.state.code} onChange={this.handleChange} />
+                <input className="side" type="text" name = "code" value={this.state.code} onChange={this.handleChange} />
                 </label>
                 <label>
                     Name:
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
+                <input className="side" type="text" name="name" value={this.state.name} onChange={this.handleChange} />
                 </label>
                 <label>
                     Latitude:
-                <input type="text" name="lat" value={this.state.lat} onChange={this.handleChange} />
+                <input className="side" type="text" name="lat" value={this.state.lat} onChange={this.handleChange} />
                 </label>
                 <label>
                     Longitude:
-                <input type="text" name="long" value={this.state.long} onChange={this.handleChange} />
+                <input className="side" type="text" name="long" value={this.state.long} onChange={this.handleChange} />
                 </label>
                 <label>
                     Address:
-                <input type="text" name="addr" value={this.state.addr} onChange={this.handleChange} />
+                <input className="side" type="text" name="addr" value={this.state.addr} onChange={this.handleChange} />
                 </label>
-                <input type="submit" value="Submit" />
+                <div className="submitButton">
+                    <button type="submit">
+                        <IoIosAddCircleOutline/>
+                    </button>
+                </div>
             </form>
         );
         

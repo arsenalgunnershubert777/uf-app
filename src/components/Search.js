@@ -14,9 +14,10 @@ class Search extends React.Component {
 			//<form>
 			//	<input type="text" placeholder="Type to Filter" />
 			//</form>
-            <header>
-                <form>
+            <header className="blueHeader">
+                <form >
                     <input
+                        className = "header"
                         type="text"
                         ref={(value) => { this.myValue = value }}
                         placeholder="Type to filter ..."

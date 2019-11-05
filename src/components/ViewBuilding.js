@@ -44,41 +44,39 @@ class ViewBuilding extends React.Component {
         })
         .map(directory => {
             return (
-
-
-                <div>
+                
+                
+                <div className="viewBuilding">
                     <tr
                         key={directory.id}
                     >   
-                        <p>
-                            <td> {directory.code} </td>
-                            <br/>
-                            <td> {directory.name} </td>
-                        </p>
-                    </tr>
+                    <p> {"Code: "} {directory.code} </p>
+                    <p> {"Name: "} {directory.name} </p>
                     <p> {"Latitude: "} {this.displayBuildingLatitude(directory)} </p>
                     <p> {"Longitude: "} {this.displayBuildingLongitude(directory)} </p>
                     <p> {"Address: "} {this.displayBuildingAddress(directory)} </p>
+                    </tr>
                 </div>
-                /*
-                <div>
-                    <tr
-                        key={directory.id}
-                    />
-                    
-                    <p>
-                        <td> {directory.code} </td>
-                        <td> {directory.name} </td>
-                        <td> {directory.coordinates.latitude} </td>
-                        <td> {directory.coordinates.longitude} </td>
-                        <td> {directory.address} </td>
-                    </p>
-                </div>*/
+
                 
             );
-        });
+            });
 
-        return <div>{buildingDisplay}</div>
+        if (buildingDisplay.length === 0) {
+            return (
+                <div className="viewBuilding">
+                    <p> Click on a building to view!</p>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>{buildingDisplay}</div>
+
+            )
+        }
+
+
 
         /*
 		return (

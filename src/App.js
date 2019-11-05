@@ -75,18 +75,22 @@ class App extends React.Component {
                 data={this.state.data}
                 selectedBuilding ={this.state.selectedBuilding}
               />
+              <RemoveBuilding 
+                data={this.state.data}
+                updateData={this.updateData.bind(this)}
+              />
+              <AddBuilding 
+                data={this.state.data}
+                updateData={this.updateData.bind(this)}
+              />
             </div>
+
+            
           </div>
           <Credit />
         </main>
-        <AddBuilding
-          data={this.state.data}
-          updateData={this.updateData.bind(this)}
-        />
-        <RemoveBuilding
-            data={this.state.data}
-            updateData={this.updateData.bind(this)}
-        />
+
+
       </div>
     );
   }
