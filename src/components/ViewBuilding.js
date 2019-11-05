@@ -25,7 +25,12 @@ class ViewBuilding extends React.Component {
     displayBuildingAddress(directory) {
 
         try {
-            return directory.address
+            if (typeof directory.address == "undefined") {
+                return 'N/A'
+            }
+            else {
+                return directory.address
+            }
         } catch (e) {
             return 'N/A'
         }

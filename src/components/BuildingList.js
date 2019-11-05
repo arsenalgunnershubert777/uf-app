@@ -10,7 +10,7 @@ class BuilingList extends React.Component {
 
         const buildingList = data
             .filter(directory => {
-                return directory.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+                return (directory.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0 || directory.code.toLowerCase().indexOf(filterText.toLowerCase()) >= 0)
             })
             .sort((a, b) => (a.code > b.code) ? 1 : -1)
             .map(directory => {
